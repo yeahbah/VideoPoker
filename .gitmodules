@@ -1,0 +1,3 @@
+[submodule "PokerLib"]
+	path = PokerLib
+	url = git@github.com:yeahbah/PokerLib.git

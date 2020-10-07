@@ -1,0 +1,75 @@
+@inherits ComponentBase
+@using Yeahbah.Poker
+
+@if (Card != null)
+{
+    <div style="width: 120px; height: 170px; padding: 10px; margin: 5px; box-shadow: 4px 3px 8px 1px #969696; border-radius: 5px; border: 1px solid black; background-color: white">
+        <div style="display: flex; flex-direction: column;">
+            <div>
+                <span style="font-size: 60px; color: @BackgroundColor; letter-spacing: -1px; line-height: 80%">
+                    @Card.ShortCode[0]@switch (Card.Suit)
+                    {
+                        case Suit.Clubs:<span style="font-size:40px">&clubs;</span>
+                            break;
+                        case Suit.Diamonds:<span style="font-size:40px">&diams;</span>                    
+                            break;                    
+                        case Suit.Hearts:<span style="font-size:40px">&hearts;</span>
+                            break;
+                        case Suit.Spades:<span style="font-size:40px">&spades;</span>
+                            break;    
+                    }               
+                </span>
+            </div>
+            <div style="text-align:center; flex-grow: 1;">
+                <h1 style="font-weight: bold; color: @BackgroundColor; font-size: 80pt; letter-spacing: -1px; line-height: 75%">
+                    @switch (Card.Suit)
+                    {
+                        case Suit.Clubs:<span>&clubs;</span>
+                            break;
+                        case Suit.Diamonds:<span>&diams;</span>                    
+                            break;                    
+                        case Suit.Hearts:<span>&hearts;</span>
+                            break;
+                        case Suit.Spades:<span>&spades;</span>
+                            break;    
+                    }
+                </h1>
+            </div>
+        </div>        
+    </div>
+}
+
+@code
+{
+    [Parameter]
+    public Card Card { get; set;}
+
+    [Parameter]    
+    public bool MultiColor { get; set;} = false;
+
+    private string BackgroundColor {
+        get {
+            if (MultiColor) 
+            {            
+                return Card.Suit switch
+                {
+                    Suit.Clubs => "#228B22",
+                    Suit.Diamonds => "#33CCFF",
+                    Suit.Hearts => "red",
+                    Suit.Spades => "black",
+                    _ => throw new ArgumentOutOfRangeException()
+                };   
+            }
+            
+            return Card.Suit switch
+            {
+                Suit.Clubs => "black",
+                Suit.Spades => "black",
+                Suit.Hearts => "red",
+                Suit.Diamonds => "red",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        } 
+    }
+    
+}

@@ -1,0 +1,34 @@
+@page "/componenttestbed"
+@using Yeahbah.Poker
+
+
+<div>
+    <CardComponent Card="@Card" MultiColor="true" />
+</div>
+
+
+<div>
+    <label for="txtShortCode">Enter Card Short Code:</label>
+    <input type="text" id="txtShortCode" @bind-value="CardShortCode" />
+    <br>
+    <button @onclick="SetCard">Change Card</button>
+</div>
+
+@code
+{
+    private Card Card { get; set;}
+    private string CardShortCode { get; set;}
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        this.Card = Card.InstanceFromShortCode("As");
+    }    
+
+    private void SetCard(MouseEventArgs e)
+    {
+        this.Card = Card.InstanceFromShortCode(CardShortCode);    
+        this.StateHasChanged();
+    }
+}    

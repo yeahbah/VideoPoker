@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\VideoPoker.Shared.csproj" />
     <ProjectReference Include="..\PokerLib\PokerLib\PokerLib.csproj" />
+    <ProjectReference Include="..\Components\VideoPoker.Components.csproj" />
   </ItemGroup>
 
 </Project>
